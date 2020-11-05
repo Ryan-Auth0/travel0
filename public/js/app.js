@@ -168,8 +168,10 @@ window.onload = async () => {
       domain: AUTH0_DOMAIN,
       scope: 'openid profile email',
       responseType: 'token',
-      redirectUri: AUTH0_CALLBACK_URL
+      redirectUri: AUTH0_CALLBACK_URL,
+
     })
+    console.log("WebAuth is: ",webAuth);
   });
   
   document.getElementById('qsLoginBtn').addEventListener('click', function() {
