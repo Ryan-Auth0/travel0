@@ -182,7 +182,25 @@ window.onload = async () => {
     logout();
   });
 
-  
+  webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
+
+    if (authResult) {
+      webAuth.client.userInfo(authResult.accessToken, (err, profile) => {
+        if (err) {
+          // Remove expired token (if any)
+          localStorage.removeItem('token');
+          // Remove expired profile (if any)
+          localStorage.removeItem('profile');
+          return alert('There was an error getting the profile: ' + err.message);
+        } else {
+          localStorage.setItem('token', authResult.accessToken);
+          localStorage.setItem('profile', JSON.stringify(profile));
+          showUserProfile(profile);
+        }
+        window.location.hash = "";
+      });
+    }
+  });
 
   var checkAuth = function() {
     var token = localStorage.getItem('token');
