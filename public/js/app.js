@@ -172,14 +172,6 @@ window.onload = async () => {
     })
   });
   
-  
-  document.getElementById('btn-login').addEventListener('click', function() {
-    webAuth.authorize();
-  });
-
-  document.getElementById('btn-logout').addEventListener('click', function() {
-    logout();
-  });
 
 
   webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
