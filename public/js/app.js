@@ -172,11 +172,11 @@ window.onload = async () => {
     })
   });
   
-  document.getElementById('btn-login').addEventListener('click', function() {
+  document.getElementById('qsLoginBtn').addEventListener('click', function() {
     webAuth.authorize();
   });
 
-  document.getElementById('btn-logout').addEventListener('click', function() {
+  document.getElementById('qsLogoutBtn').addEventListener('click', function() {
     logout();
   });
 
