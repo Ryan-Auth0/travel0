@@ -32,6 +32,7 @@ window.addEventListener('load', function() {
           localStorage.setItem('token', authResult.accessToken);
           localStorage.setItem('profile', JSON.stringify(profile));
           console.log("show tokens/profile");
+          showUserProfile(profile);
         }
         window.location.hash = "";
       });
@@ -47,9 +48,7 @@ window.addEventListener('load', function() {
   };
 
   var showUserProfile = function(profile) {
-    document.getElementById('login').style.display = "none";
     console.log("Full Contact details", profile.user_metadata.fullcontact);
-    console.log("show user profile");
   };
 
   var logout = function() {
