@@ -1,4 +1,5 @@
-
+// The Auth0 client, initialized in configureClient()
+let auth0 = null;
 
 /**
  * Starts the authentication flow
@@ -58,34 +59,6 @@ const configureClient = async () => {
   });
 };
 
-const callApi = async () => {
-  try {
-
-    // Get the access token from the Auth0 client
-    const token = await auth0.getTokenSilently();
-
-    // Make the call to the API, setting the token
-    // in the Authorization header
-    const response = await fetch("/api/external", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    // Fetch the JSON result
-    const responseData = await response.json();
-    console.log("Response Data: "+responseData);
-
-    // Display the result in the output element
-    const responseElement = document.getElementById("api-call-result");
-
-    responseElement.innerText = JSON.stringify(responseData, {}, 2);
-
-} catch (e) {
-    // Display errors in the console
-    console.error(e);
-  }
-};
 
 /**
  * Checks to see if the user is authenticated. If so, `fn` is executed. Otherwise, the user
@@ -159,7 +132,8 @@ window.onload = async () => {
     window.history.replaceState({}, document.title, "/");
   }
 
-
+  let auth0 = null;
+  
   window.addEventListener('load', function() {
     var webAuth = new auth0.WebAuth(
       {
