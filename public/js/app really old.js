@@ -1,65 +1,6 @@
-window.addEventListener('load', function() {
-  var webAuth = new auth0.WebAuth({
-    clientID: AUTH0_CLIENT_ID, 
-    domain: AUTH0_DOMAIN,
-    scope: 'openid profile email',
-    responseType: 'token',
-    redirectUri: AUTH0_CALLBACK_URL
-  });
+// The Auth0 client, initialized in configureClient()
+let auth0 = null;
 
-  document.getElementById('btn-login').addEventListener('click', function() {
-    webAuth.authorize();
-  });
-
-  document.getElementById('qsLogoutBtn').addEventListener('click', function() {
-    logout();
-  });
-
-  webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
-    if (err) {
-      return console.error(err);
-    }
-    if (authResult) {
-      webAuth.client.userInfo(authResult.accessToken, (err, profile) => {
-        if (err) {
-          // Remove expired token (if any)
-          localStorage.removeItem('token');
-          // Remove expired profile (if any)
-          localStorage.removeItem('profile');
-          console.log("remove items");
-          return alert('There was an error getting the profile: ' + err.message);
-        } else {
-          localStorage.setItem('token', authResult.accessToken);
-          localStorage.setItem('profile', JSON.stringify(profile));
-          console.log("show tokens/profile");
-          showUserProfile(profile);
-        }
-        window.location.hash = "";
-      });
-    }
-  });
-
-  var checkAuth = function() {
-    var token = localStorage.getItem('token');
-    if (token) {
-      var user_profile = JSON.parse(localStorage.getItem('profile'));
-      showUserProfile(user_profile);
-    } // else: not authorized
-  };
-
-  var showUserProfile = function(profile) {
-    console.log("Full Contact details", profile.user_metadata.fullcontact);
-  };
-
-  var logout = function() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('profile');
-    window.location.href = "/";
-    console.log("logout prompt");
-  };
-
-  checkAuth();
-});
 /**
  * Starts the authentication flow
  */
@@ -94,9 +35,6 @@ const logout = () => {
   } catch (err) {
     console.log("Log out failed", err);
   }
-  localStorage.removeItem('token');
-  localStorage.removeItem('profile');
-  window.location.href = "/";
 };
 
 /**
@@ -118,6 +56,34 @@ const configureClient = async () => {
   });
 };
 
+const callApi = async () => {
+  try {
+
+    // Get the access token from the Auth0 client
+    const token = await auth0.getTokenSilently(); cru
+
+    // Make the call to the API, setting the token
+    // in the Authorization header
+    const response = await fetch("/api/external", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    // Fetch the JSON result
+    const responseData = await response.json();
+   
+
+    // Display the result in the output element
+    const responseElement = document.getElementById("api-call-result");
+
+    responseElement.innerText = JSON.stringify(responseData, {}, 2);
+
+} catch (e) {
+    // Display errors in the console
+    console.error(e);
+  }
+};
 
 /**
  * Checks to see if the user is authenticated. If so, `fn` is executed. Otherwise, the user
@@ -166,10 +132,8 @@ window.onload = async () => {
     updateUI();
     return;
   }
-  else {
 
   console.log("> User not authenticated");
-  }
 
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
@@ -193,6 +157,7 @@ window.onload = async () => {
 
   
 
-
   updateUI();
+
+  
 };
