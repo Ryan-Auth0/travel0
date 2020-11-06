@@ -12,7 +12,7 @@ window.addEventListener('load', function() {
   });
 
   document.getElementById('btn-logout').addEventListener('click', function() {
-    logout();
+    removeProfile();
   });
 
   webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
     console.log("Full Contact details", profile.user_metadata.fullcontact);
   };
 
-  var logout = function() {
+  var removeProfile = function() {
     localStorage.removeItem('token');
     localStorage.removeItem('profile');
     window.location.href = "/";
