@@ -132,7 +132,7 @@ window.onload = async () => {
     window.history.replaceState({}, document.title, "/");
   }
 
-  updateUI();
+  
 
   window.addEventListener('load', function() {
     var webAuth = new auth0.WebAuth({
@@ -202,5 +202,5 @@ window.onload = async () => {
   
     checkAuth();
   });
-  
+  updateUI();
 };
