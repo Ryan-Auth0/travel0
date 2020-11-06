@@ -1,5 +1,5 @@
 {
   "domain": "dev-sn9ek-2a.us.auth0.com",
   "clientId": "7Gu104kCkWDutpMLHA4To3mi0ZJdcw0z",
-  "audience": "https://travel0-git.herokuapp.com/"
+  "audience": "http://travel0-git.herokuapp.com/"
 }
