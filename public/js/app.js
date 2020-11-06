@@ -162,11 +162,13 @@ window.onload = async () => {
             localStorage.removeItem('token');
             // Remove expired profile (if any)
             localStorage.removeItem('profile');
+            console.log("remove items");
             return alert('There was an error getting the profile: ' + err.message);
           } else {
             localStorage.setItem('token', authResult.accessToken);
             localStorage.setItem('profile', JSON.stringify(profile));
             showUserProfile(profile);
+            console.log("show tokens/profile");
           }
           window.location.hash = "";
         });
@@ -188,12 +190,14 @@ window.onload = async () => {
       document.getElementById('email').textContent = profile.email;
       document.getElementById('nickname').textContent = profile.nickname;
       console.log("Full Contact details", profile.user_metadata.fullcontact);
+      console.log("show user profile");
     };
   
     var logout = function() {
       localStorage.removeItem('token');
       localStorage.removeItem('profile');
       window.location.href = "/";
+      console.log("logout prompt");
     };
   
     checkAuth();
