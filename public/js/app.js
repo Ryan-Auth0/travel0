@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
     webAuth.authorize();
   });
 
-  document.getElementById('btn-logout').addEventListener('click', function() {
+  document.getElementById('qsLogoutBtn').addEventListener('click', function() {
     logout();
   });
 
