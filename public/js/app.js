@@ -134,17 +134,13 @@ window.onload = async () => {
 
 
   window.addEventListener('load', function() {
-    var webAuth = new auth0.WebAuth(
-      {
+    var webAuth = new auth0.WebAuth({
       clientID: AUTH0_CLIENT_ID, 
       domain: AUTH0_DOMAIN,
       scope: 'openid profile email',
       responseType: 'token',
-      redirectUri: AUTH0_CALLBACK_URL,
-
-    })
-    console.log("WebAuth is: ",webAuth);
-  });
+      redirectUri: AUTH0_CALLBACK_URL
+    });
   
   document.getElementById('qsLoginBtn').addEventListener('click', function() {
     webAuth.authorize();
