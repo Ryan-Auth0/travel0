@@ -7,11 +7,11 @@ window.addEventListener('load', function() {
     redirectUri: AUTH0_CALLBACK_URL
   });
 
-  document.getElementById('qsLoginBtn').addEventListener('click', function() {
+  document.getElementById('btn-login').addEventListener('click', function() {
     webAuth.authorize();
   });
 
-  document.getElementById('qsLogoutBtn').addEventListener('click', function() {
+  document.getElementById('btn-logout').addEventListener('click', function() {
     logout();
   });
 
