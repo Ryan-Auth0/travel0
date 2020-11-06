@@ -1,8 +1,3 @@
-// The Auth0 client, initialized in configureClient()
-let auth0 = null;
-
-
-
 window.addEventListener('load', function() {
   var webAuth = new auth0.WebAuth({
     clientID: AUTH0_CLIENT_ID, 
@@ -12,7 +7,7 @@ window.addEventListener('load', function() {
     redirectUri: AUTH0_CALLBACK_URL
   });
 
-  document.getElementById('qsLoginBtn').addEventListener('click', function() {
+  document.getElementById('btn-login').addEventListener('click', function() {
     webAuth.authorize();
   });
 
