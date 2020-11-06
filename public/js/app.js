@@ -1,5 +1,3 @@
-
-
 window.addEventListener('load', function() {
   var webAuth = new auth0.WebAuth({
     clientID: AUTH0_CLIENT_ID, 
