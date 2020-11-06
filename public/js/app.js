@@ -47,15 +47,6 @@ window.addEventListener('load', function() {
     } // else: not authorized
   };
 
-  var showUserProfile = function(profile) {
-    document.getElementById('login').style.display = "none";
-    document.getElementById('logged').style.display = "inline-block";
-    document.getElementById('avatar').src = profile.picture;
-    document.getElementById('email').textContent = profile.email;
-    document.getElementById('nickname').textContent = profile.nickname;
-    console.log("Full Contact details", profile.user_metadata.fullcontact);
-    console.log("show user profile");
-  };
 
   var logout = function() {
     localStorage.removeItem('token');
