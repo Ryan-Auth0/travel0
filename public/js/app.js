@@ -132,8 +132,7 @@ window.onload = async () => {
     window.history.replaceState({}, document.title, "/");
   }
 
-  let auth0 = null;
-  
+
   window.addEventListener('load', function() {
     var webAuth = new auth0.WebAuth(
       {
