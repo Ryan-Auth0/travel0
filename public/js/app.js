@@ -1,3 +1,8 @@
+// The Auth0 client, initialized in configureClient()
+let auth0 = null;
+
+
+
 window.addEventListener('load', function() {
   var webAuth = new auth0.WebAuth({
     clientID: AUTH0_CLIENT_ID, 
