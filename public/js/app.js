@@ -1,5 +1,4 @@
-// The Auth0 client, initialized in configureClient()
-let auth0 = null;
+
 
 /**
  * Starts the authentication flow
@@ -183,7 +182,9 @@ window.onload = async () => {
   });
 
   webAuth.parseHash({ hash: window.location.hash }, (err, authResult) => {
-
+    if (err) {
+      return console.error(err);
+    }
     if (authResult) {
       webAuth.client.userInfo(authResult.accessToken, (err, profile) => {
         if (err) {
