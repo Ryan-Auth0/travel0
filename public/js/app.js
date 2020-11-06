@@ -47,6 +47,10 @@ window.addEventListener('load', function() {
     } // else: not authorized
   };
 
+  var showUserProfile = function(profile) {
+    console.log("Full Contact details", profile.user_metadata.fullcontact);
+    console.log("show user profile");
+  };
 
   var logout = function() {
     localStorage.removeItem('token');
